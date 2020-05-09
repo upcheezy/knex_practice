@@ -39,12 +39,14 @@ describe(`Articles service object`, function () {
 
     before(() => db('shopping_list').truncate());
 
+    // beforeEach(() => db('shopping_list').truncate());
+
     afterEach(() => db('shopping_list').truncate())
 
     after(() => db.destroy());
 
     context(`Given 'shopping_list' has data`, () => {
-        this.beforeEach(() => {
+        beforeEach(() => {
             return db
                 .into('shopping_list')
                 .insert(testArticles)
@@ -99,7 +101,7 @@ describe(`Articles service object`, function () {
         it(`getAllArticles() resolves an empty array`, () => {
             return ShoppingListService.getAllItems(db)
                 .then(actual => {
-                    expect(actual).to.equal([])
+                    expect(actual).to.eql([])
                 })
         })
 
